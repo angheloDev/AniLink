@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { formatPeso } from '../../lib/format';
 import { useI18n } from '../../lib/i18n';
 import { PRICE_GUIDE, sparklinePath, vsAverage } from '../../lib/priceGuide';
+import { Photo } from '../Photo';
 
 const pct = (v: number, lo: number, hi: number) => Math.min(100, Math.max(0, ((v - lo) / (hi - lo)) * 100));
 
@@ -37,7 +38,7 @@ export function PriceGuideScreen() {
               i === index ? 'border-primary bg-primary text-primary-text' : 'border-border text-muted hover:text-text'
             }`}
           >
-            <span aria-hidden>{p.emoji}</span> {p.crop}
+            <Photo id={p.photo} eager className="size-6 shrink-0 rounded-full" /> {p.crop}
           </button>
         ))}
       </div>
@@ -49,12 +50,14 @@ export function PriceGuideScreen() {
             /kg · <span>{t('price.avg')}</span>
           </span>
         </p>
-        <p className={`m-0 mt-2 inline-block rounded-full px-2.5 py-1 text-[11px] font-semibold ${badgeStyle}`}>{badge}</p>
+        <p key={c.crop} className={`pop-in m-0 mt-2 inline-block rounded-full px-2.5 py-1 text-[11px] font-semibold ${badgeStyle}`}>
+          {badge}
+        </p>
 
         <div className="mt-4">
           <div className="relative h-2 rounded-full bg-border" aria-hidden>
             <span className="absolute inset-y-0 rounded-full bg-primary" style={{ left: 0, right: 0 }} />
-            <span className="absolute -top-1 size-4 -translate-x-1/2 rounded-full border-2 border-bg bg-accent" style={{ left: `${pct(c.listed, c.low, c.high)}%` }} />
+            <span className="absolute -top-1 size-4 -translate-x-1/2 rounded-full border-2 border-bg bg-accent motion-safe:transition-[left] motion-safe:duration-700 motion-safe:ease-out" style={{ left: `${pct(c.listed, c.low, c.high)}%` }} />
           </div>
           <div className="mt-1.5 flex justify-between text-[10px] text-muted">
             <span>
@@ -70,7 +73,7 @@ export function PriceGuideScreen() {
 
       <div className="rounded-2xl bg-card p-3">
         <p className="m-0 mb-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-eyebrow">{t('price.trend')}</p>
-        <svg viewBox="0 0 200 60" preserveAspectRatio="none" className="h-16 w-full" role="img" aria-label={t('price.trend')}>
+        <svg key={c.crop} viewBox="0 0 200 60" preserveAspectRatio="none" className="wipe h-16 w-full" role="img" aria-label={t('price.trend')}>
           <path
             data-testid="sparkline"
             d={sparklinePath(c.weekly, 200, 60)}

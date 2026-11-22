@@ -5,6 +5,8 @@ import { useI18n } from '../lib/i18n';
 import { filterProduce, PRODUCE, type ProduceCategory, type ProduceItem } from '../lib/produce';
 import { useStore } from '../lib/store';
 import { Eyebrow } from './Eyebrow';
+import { Photo } from './Photo';
+import { Reveal } from './Reveal';
 
 const FILTERS = ['all', 'fruits', 'vegetables', 'leafy', 'rootcrops', 'crafts'] as const;
 const TINT: Record<ProduceCategory, string> = {
@@ -15,22 +17,25 @@ const TINT: Record<ProduceCategory, string> = {
   crafts: 'bg-tint-mango',
 };
 
-function Card({ item, saved, onSave }: { item: ProduceItem; saved: boolean; onSave(): void }) {
+function Card({ item, saved, onSave, index }: { item: ProduceItem; saved: boolean; onSave(): void; index: number }) {
   const { t } = useI18n();
   return (
-    <li data-testid="produce-card" className="overflow-hidden rounded-3xl border border-border bg-card">
-      <div className={`relative grid h-44 place-items-center sm:h-48 ${TINT[item.category]}`}>
-        <span aria-hidden className="text-7xl drop-shadow-lg sm:text-8xl">
-          {item.emoji}
-        </span>
+    <Reveal
+      as="li"
+      delay={(index % 4) * 90}
+      data-testid="produce-card"
+      className="group overflow-hidden rounded-3xl border border-border bg-card transition duration-300 motion-safe:hover:-translate-y-1 hover:border-eyebrow/50 hover:shadow-2xl hover:shadow-black/25"
+    >
+      <div className={`relative h-44 overflow-hidden sm:h-48 ${TINT[item.category]}`}>
+        <Photo id={item.photo} alt={item.name} className="absolute inset-0 size-full transition-transform duration-700 ease-out motion-safe:group-hover:scale-110" />
         <button
           type="button"
           aria-pressed={saved}
           aria-label={t('produce.save', { name: item.name })}
           onClick={onSave}
-          className="absolute right-3 top-3 grid size-11 place-items-center rounded-full bg-black/45 text-white transition hover:bg-black/60"
+          className="absolute right-3 top-3 grid size-11 place-items-center rounded-full bg-black/45 text-white transition hover:scale-110 hover:bg-black/60"
         >
-          <Heart size={18} className={saved ? 'fill-accent text-accent' : ''} aria-hidden />
+          <Heart size={18} className={`heart-icon ${saved ? 'fill-accent text-accent' : ''}`} aria-hidden />
         </button>
         <span className="absolute bottom-3 left-3 rounded-full bg-black/55 px-3 py-1 text-[11px] font-semibold text-white">{t(`cat.${item.category}`)}</span>
       </div>
@@ -51,7 +56,7 @@ function Card({ item, saved, onSave }: { item: ProduceItem; saved: boolean; onSa
           )}
         </div>
       </div>
-    </li>
+    </Reveal>
   );
 }
 
@@ -76,7 +81,9 @@ export function Produce() {
         <Eyebrow>{t('produce.eyebrow')}</Eyebrow>
         <div className="mt-5 flex flex-wrap items-end justify-between gap-6">
           <div>
-            <h2 className="m-0 font-display text-4xl leading-[1.05] tracking-tight text-headline sm:text-5xl lg:text-6xl">{t('produce.title')}</h2>
+            <Reveal as="h2" delay={90} className="m-0 font-display text-4xl leading-[1.05] tracking-tight text-headline sm:text-5xl lg:text-6xl">
+              {t('produce.title')}
+            </Reveal>
             <p className="mb-0 mt-3 inline-block rounded-full bg-sun/15 px-3 py-1 text-xs font-medium text-sun-text">{t('produce.sample')}</p>
           </div>
           <button
@@ -105,8 +112,8 @@ export function Produce() {
         </div>
 
         <ul className="m-0 mt-8 grid list-none grid-cols-1 gap-5 p-0 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((item) => (
-            <Card key={item.id} item={item} saved={saved.has(item.id)} onSave={() => toggleSave(item.id)} />
+          {items.map((item, i) => (
+            <Card key={item.id} index={i} item={item} saved={saved.has(item.id)} onSave={() => toggleSave(item.id)} />
           ))}
         </ul>
       </div>

@@ -2,6 +2,7 @@ import { BadgeCheck, MessagesSquare, PackageCheck, Search, Sprout, Star, Tag, Tr
 import { useState } from 'react';
 import { useI18n } from '../lib/i18n';
 import { Eyebrow } from './Eyebrow';
+import { Reveal } from './Reveal';
 
 type Audience = 'buyers' | 'farmers';
 const STEPS = [1, 2, 3, 4] as const;
@@ -10,7 +11,7 @@ const ICONS = {
   farmers: [Sprout, BadgeCheck, Tag, PackageCheck],
 } as const;
 
-/** The dark-green "how it works" band with numbered steps and a buyers / farmers toggle. */
+/** The dark-green "how it works" band with four steps and a buyers / farmers toggle. */
 export function HowItWorks() {
   const { t } = useI18n();
   const [who, setWho] = useState<Audience>('buyers');
@@ -36,7 +37,9 @@ export function HowItWorks() {
       <div className="relative mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
         <div>
           <Eyebrow>{t('how.eyebrow')}</Eyebrow>
-          <h2 className="mb-0 mt-5 font-display text-4xl leading-[1.05] tracking-tight text-headline sm:text-5xl lg:text-6xl">{t('how.title')}</h2>
+          <Reveal as="h2" delay={90} className="mb-0 mt-5 font-display text-4xl leading-[1.05] tracking-tight text-headline sm:text-5xl lg:text-6xl">
+            {t('how.title')}
+          </Reveal>
           <div className="mt-8 flex flex-wrap gap-2">
             {toggle('buyers', t('how.forBuyers'))}
             {toggle('farmers', t('how.forFarmers'))}
@@ -47,18 +50,15 @@ export function HowItWorks() {
           {STEPS.map((n, i) => {
             const Icon = ICONS[who][i];
             return (
-              <li key={`${who}-${n}`} className="grid grid-cols-[auto_auto_1fr] items-start gap-4 border-t border-eyebrow/20 py-6 last:border-b sm:gap-6">
-                <span aria-hidden className="pt-3 font-display text-lg text-muted">
-                  0{n}
-                </span>
-                <span aria-hidden className="grid size-12 place-items-center rounded-full bg-black/20 text-headline">
+              <Reveal as="li" key={`${who}-${n}`} delay={i * 90} className="group grid grid-cols-[auto_1fr] items-start gap-4 border-t border-eyebrow/20 py-6 transition duration-300 last:border-b motion-safe:hover:translate-x-1 hover:border-eyebrow/50 sm:gap-6">
+                <span aria-hidden className="grid size-12 place-items-center rounded-full bg-black/20 text-headline transition duration-300 group-hover:scale-110 group-hover:bg-eyebrow/25">
                   <Icon size={20} />
                 </span>
                 <div>
                   <h3 className="m-0 text-lg font-semibold text-text">{t(`how.${who}.${n}.title`)}</h3>
                   <p className="m-0 mt-1 text-sm leading-relaxed text-text/80">{t(`how.${who}.${n}.desc`)}</p>
                 </div>
-              </li>
+              </Reveal>
             );
           })}
         </ol>

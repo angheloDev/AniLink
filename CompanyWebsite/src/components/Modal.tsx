@@ -58,14 +58,14 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
 
   return createPortal(
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" onKeyDown={trapTab}>
-      <div data-testid="modal-backdrop" className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
+      <div data-testid="modal-backdrop" className="fade-fast absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
       <div
         ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
         tabIndex={-1}
-        className="relative w-full max-w-md rounded-3xl border border-border bg-surface p-6 text-text shadow-2xl outline-none sm:p-8"
+        className="modal-pop relative w-full max-w-md rounded-3xl border border-border bg-surface p-6 text-text shadow-2xl outline-none sm:p-8"
       >
         <h2 id={titleId} className="mb-4 font-display text-2xl leading-tight text-headline">
           {title}

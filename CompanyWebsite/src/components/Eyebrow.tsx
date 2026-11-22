@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react';
+import { Reveal } from './Reveal';
 
-/** The small uppercase, letter-spaced label with a leading rule, used above every section title. */
+/** The small uppercase, letter-spaced label used above every section title. It fades up as it scrolls into view. */
 export function Eyebrow({ children, className = '' }: { children: ReactNode; className?: string }) {
   return (
-    <p className={`m-0 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-eyebrow ${className}`}>
-      <span aria-hidden className="h-px w-8 bg-eyebrow" />
+    <Reveal as="p" className={`m-0 text-xs font-semibold uppercase tracking-[0.22em] text-eyebrow ${className}`}>
       {children}
-    </p>
+    </Reveal>
   );
 }

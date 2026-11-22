@@ -11,7 +11,7 @@ export function StoreButton({ store, className = '' }: { store: StoreId; classNa
     <button
       type="button"
       onClick={() => open(store)}
-      className={`inline-flex min-h-14 items-center gap-3 rounded-2xl border border-border bg-card px-5 text-left text-text transition hover:border-eyebrow hover:-translate-y-0.5 ${className}`}
+      className={`shine inline-flex min-h-14 items-center gap-3 rounded-2xl border border-border bg-card px-5 text-left text-text transition hover:border-eyebrow hover:shadow-xl hover:shadow-black/20 motion-safe:hover:-translate-y-0.5 ${className}`}
     >
       {google ? <Play size={26} className="fill-eyebrow text-eyebrow" aria-hidden /> : <Smartphone size={26} className="text-accent" aria-hidden />}
       <span className="flex flex-col leading-tight">

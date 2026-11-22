@@ -1,0 +1,377 @@
+/*
+  Micro-animations.
+
+  One rule: anything that moves is switched on inside the "no-preference" query at the bottom. A visitor who asked
+  their device for less motion gets the same page, finished and still. test/motion.test.tsx enforces this.
+  Rules above the query only describe layout and hover states that look right without motion.
+*/
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pop {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0) scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes heart {
+  0% {
+    scale: 1;
+  }
+  35% {
+    scale: 1.5;
+  }
+  65% {
+    scale: 0.88;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+@keyframes bell {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  15% {
+    rotate: 18deg;
+  }
+  30% {
+    rotate: -16deg;
+  }
+  45% {
+    rotate: 11deg;
+  }
+  60% {
+    rotate: -8deg;
+  }
+  75% {
+    rotate: 4deg;
+  }
+}
+
+@keyframes wipe {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes scan {
+  0% {
+    top: 6%;
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 94%;
+    opacity: 0;
+  }
+}
+
+@keyframes glint {
+  0%,
+  65% {
+    translate: -130% 0;
+  }
+  100% {
+    translate: 130% 0;
+  }
+}
+
+@keyframes fill {
+  from {
+    scale: 0 1;
+  }
+  to {
+    scale: 1 1;
+  }
+}
+
+@keyframes swap {
+  from {
+    opacity: 0;
+    rotate: -80deg;
+    scale: 0.5;
+  }
+  to {
+    opacity: 1;
+    rotate: 0deg;
+    scale: 1;
+  }
+}
+
+@keyframes ping {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* ---- Looks that are the same with or without motion ---- */
+
+/* FAQ answer: the panel is a grid whose single row grows from 0 to its content's height. */
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+}
+.faq-panel[data-open='true'] {
+  grid-template-rows: 1fr;
+}
+.faq-panel > div {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* The shine that sweeps across a button; only its hover motion is gated below. */
+.shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 35%, rgb(255 255 255 / 0.28) 50%, transparent 65%);
+  translate: -130% 0;
+}
+
+/* Underline that grows under a nav link. */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--eyebrow);
+  scale: 0 1;
+  transform-origin: left;
+}
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  scale: 1 1;
+}
+
+/* Decorations that only make sense when they move stay hidden until motion is allowed. */
+.scan-line,
+.progress-track,
+.pin-ping {
+  display: none;
+}
+
+/* ---- Everything that moves ---- */
+@media (prefers-reduced-motion: no-preference) {
+  /* Scroll reveal: hidden until Reveal marks it shown, then it rises into place. */
+  [data-reveal='hidden'] {
+    opacity: 0;
+  }
+  [data-reveal='shown'] {
+    animation: rise 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms) backwards;
+  }
+
+  /* Hero */
+  .phone-rise {
+    animation: rise 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.35s backwards;
+  }
+  .float-a {
+    animation:
+      pop 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.15) 0.9s backwards,
+      float 5.5s ease-in-out 1.6s infinite alternate;
+  }
+  .float-b {
+    animation:
+      pop 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.15) 1.1s backwards,
+      float 6.5s ease-in-out 1.8s infinite alternate-reverse;
+  }
+  .sun-breathe {
+    animation: breathe 7s ease-in-out infinite;
+  }
+  .ring-pulse {
+    animation: breathe 9s ease-in-out var(--d, 0s) infinite;
+  }
+
+  /* Small entrances. Set --d (for example [--d:200ms]) to hold one back. */
+  .pop-in {
+    animation: pop 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.1) var(--d, 0ms) backwards;
+  }
+  .screen-in {
+    animation: slide-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  }
+  .stagger-in {
+    animation: slide-in 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--i, 0) * 70ms + 60ms) backwards;
+  }
+  .fade-fast {
+    animation: fade 0.2s ease-out backwards;
+  }
+  .modal-pop {
+    animation: pop 0.38s cubic-bezier(0.2, 0.9, 0.3, 1.15) backwards;
+  }
+  .icon-swap {
+    animation: swap 0.4s cubic-bezier(0.2, 0.8, 0.3, 1) backwards;
+  }
+  .wipe {
+    animation: wipe 1s cubic-bezier(0.3, 0.7, 0.2, 1) 0.1s backwards;
+  }
+  .bell-ring {
+    transform-origin: 50% 8%;
+    animation: bell 1.2s ease-in-out 0.25s 2;
+  }
+
+  /* Save heart */
+  [aria-pressed='true'] > .heart-icon {
+    animation: heart 0.55s cubic-bezier(0.2, 0.8, 0.3, 1);
+  }
+
+  /* Buttons: a quick press, and a light sweep on the main calls to action. */
+  button:not([aria-expanded]):not([role='tab']):not(:disabled):not([aria-disabled='true']):active {
+    scale: 0.965;
+  }
+  .shine::after {
+    transition: translate 0.7s ease;
+  }
+  .shine:hover::after,
+  .shine:focus-visible::after {
+    translate: 130% 0;
+  }
+  .glint::after {
+    animation: glint 6s ease-in-out 2s infinite;
+  }
+  .glint:hover::after,
+  .glint:focus-visible::after {
+    animation: none;
+  }
+
+  /* Nav links */
+  .nav-link::after {
+    transition: scale 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  /* QR card scanner line and the store redirect progress bar */
+  .scan-line {
+    display: block;
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    top: 6%;
+    height: 2px;
+    border-radius: 2px;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, #1b6440, transparent);
+    box-shadow: 0 0 12px 1px rgb(27 100 64 / 0.55);
+    animation: scan 2.8s ease-in-out infinite;
+  }
+  .progress-track {
+    display: block;
+  }
+  .progress-fill {
+    transform-origin: left;
+    animation: fill var(--dur, 1600ms) linear forwards;
+  }
+
+  /* Map pins send out a slow ping */
+  .pin-ping {
+    display: inline;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: ping 2.6s ease-out infinite;
+    animation-delay: calc(var(--i, 0) * 350ms);
+  }
+
+  /* FAQ: height eases open, the answer text follows a beat later. */
+  .faq-panel {
+    transition:
+      grid-template-rows 0.38s cubic-bezier(0.2, 0.7, 0.2, 1),
+      visibility 0s linear 0.38s;
+  }
+  .faq-panel[data-open='true'] {
+    transition:
+      grid-template-rows 0.38s cubic-bezier(0.2, 0.7, 0.2, 1),
+      visibility 0s;
+  }
+  .faq-panel > div > p {
+    opacity: 0;
+    translate: 0 -6px;
+    transition:
+      opacity 0.3s ease,
+      translate 0.38s ease;
+  }
+  .faq-panel[data-open='true'] > div > p {
+    opacity: 1;
+    translate: 0 0;
+    transition-delay: 0.08s;
+  }
+}

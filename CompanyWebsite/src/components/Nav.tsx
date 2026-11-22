@@ -1,6 +1,7 @@
 import { Menu, X } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { useI18n } from '../lib/i18n';
+import { useScrolled } from '../lib/scroll';
 import { useStore } from '../lib/store';
 import { LanguageToggle } from './LanguageToggle';
 import { Logo } from './Logo';
@@ -13,12 +14,13 @@ export const NAV_LINKS = [
   { href: '#faq', key: 'nav.faq' },
 ] as const;
 
-const CTA = 'inline-flex min-h-11 items-center justify-center rounded-full bg-primary px-4 text-sm xl:px-6 font-semibold text-primary-text transition hover:brightness-110';
+const CTA = 'shine glint inline-flex min-h-11 items-center justify-center rounded-full bg-primary px-4 text-sm xl:px-6 font-semibold text-primary-text transition hover:brightness-110';
 
 export function Nav() {
   const { t } = useI18n();
   const { open: openStore } = useStore();
   const [menu, setMenu] = useState(false);
+  const scrolled = useScrolled();
   const burger = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -45,15 +47,18 @@ export function Nav() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-border bg-bg/85 backdrop-blur-md">
-        <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-4 px-5 sm:px-8">
+      <header
+        data-scrolled={scrolled ? 'true' : 'false'}
+        className="group sticky top-0 z-50 border-b border-border bg-bg/85 backdrop-blur-md transition-shadow duration-300 data-[scrolled=true]:shadow-[0_10px_30px_-14px_rgba(0,0,0,0.5)]"
+      >
+        <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-4 px-5 motion-safe:transition-[height] motion-safe:duration-300 group-data-[scrolled=true]:h-16 sm:px-8">
           <a href="#top" className="rounded-full" onClick={() => setMenu(false)}>
             <Logo variant="lockup" />
           </a>
 
           <nav aria-label="Primary" className="hidden items-center gap-5 lg:flex xl:gap-9">
             {NAV_LINKS.map((l) => (
-              <a key={l.href} href={l.href} className="whitespace-nowrap text-sm font-medium text-muted transition hover:text-text">
+              <a key={l.href} href={l.href} className="nav-link whitespace-nowrap text-sm font-medium text-muted transition hover:text-text">
                 {t(l.key)}
               </a>
             ))}
@@ -76,17 +81,19 @@ export function Nav() {
             onClick={() => setMenu((m) => !m)}
             className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-surface text-text lg:hidden"
           >
-            {menu ? <X size={20} aria-hidden /> : <Menu size={20} aria-hidden />}
+            <span key={String(menu)} className="icon-swap grid place-items-center">
+              {menu ? <X size={20} aria-hidden /> : <Menu size={20} aria-hidden />}
+            </span>
           </button>
         </div>
       </header>
 
       {menu && (
-        <div id="mobile-menu" data-testid="mobile-menu" className="fixed inset-0 z-40 flex flex-col gap-8 overflow-y-auto bg-bg px-6 pb-10 pt-28 lg:hidden">
+        <div id="mobile-menu" data-testid="mobile-menu" className="fade-fast fixed inset-0 z-40 flex flex-col gap-8 overflow-y-auto bg-bg px-6 pb-10 pt-28 lg:hidden">
           <nav aria-label="Mobile">
             <ul className="m-0 flex list-none flex-col gap-2 p-0">
-              {NAV_LINKS.map((l) => (
-                <li key={l.href}>
+              {NAV_LINKS.map((l, i) => (
+                <li key={l.href} className="stagger-in" style={{ '--i': i } as CSSProperties}>
                   <a
                     href={l.href}
                     onClick={() => setMenu(false)}

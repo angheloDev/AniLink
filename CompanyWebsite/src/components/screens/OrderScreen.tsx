@@ -56,12 +56,12 @@ export function OrderScreen() {
                 <span
                   aria-hidden
                   className={`grid size-6 place-items-center rounded-full border-2 ${
-                    done ? 'border-eyebrow bg-eyebrow text-bg' : i === step ? 'border-accent text-accent' : 'border-border text-transparent'
+                    done ? 'pop-in border-eyebrow bg-eyebrow text-bg' : i === step ? 'border-accent text-accent' : 'border-border text-transparent'
                   }`}
                 >
                   <Check size={12} />
                 </span>
-                {i < ORDER_STEPS.length - 1 && <span aria-hidden className={`h-6 w-0.5 ${done ? 'bg-eyebrow' : 'bg-border'}`} />}
+                {i < ORDER_STEPS.length - 1 && <span aria-hidden className={`h-6 w-0.5 transition-colors duration-500 ${done ? 'bg-eyebrow' : 'bg-border'}`} />}
               </div>
               <p className={`m-0 pt-0.5 text-xs ${done ? 'font-semibold text-text' : 'text-muted'}`}>{t(`order.step.${id}`)}</p>
             </li>

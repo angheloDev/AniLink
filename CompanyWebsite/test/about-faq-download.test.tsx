@@ -58,9 +58,10 @@ describe('Faq', () => {
     expect(triggers()[0]).toHaveAttribute('aria-expanded', 'false');
   });
 
-  it('answers truthfully: payments are a demo and the app is Android-first', () => {
-    expect(en['faq.payments.a']).toMatch(/demo/i);
+  it('answers as a live app: you can pay in it, and it runs on Android and iPhone', () => {
+    expect(en['faq.payments.a']).toMatch(/^Yes/);
     expect(en['faq.platforms.a']).toMatch(/Android/);
+    expect(en['faq.platforms.a']).toMatch(/iPhone/);
   });
 });
 

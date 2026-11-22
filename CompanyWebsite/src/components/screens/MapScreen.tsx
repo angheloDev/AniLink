@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { useI18n } from '../../lib/i18n';
 import { LAND_FILLERS, MAP_PINS, project, ROUTE, VIEWBOX } from '../../lib/mapData';
 import { useReducedMotion } from '../../lib/reducedMotion';
@@ -57,9 +57,10 @@ export function MapScreen() {
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        {pins.map((p) => (
+        {pins.map((p, i) => (
           <g key={p.id} data-testid="map-pin" transform={`translate(${p.pos[0]} ${p.pos[1]})`}>
             <title>{p.name}</title>
+            <circle r={p.role ? 7 : 5} fill={p.role ? 'var(--accent)' : 'var(--eyebrow)'} className="pin-ping" style={{ '--i': i } as CSSProperties} />
             <circle r={p.role ? 7 : 5} fill={p.role ? 'var(--accent)' : 'var(--eyebrow)'} stroke="var(--bg)" strokeWidth={2} />
             {p.price > 0 && (
               <>
