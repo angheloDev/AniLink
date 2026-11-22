@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title>AniLink | Fresh from Zamboanga's farms</title>
+    <meta
+      name="description"
+      content="AniLink connects Zamboanga City farmers and local buyers: chat, make offers, check fair prices and follow every order in one app."
+    />
+    <meta name="theme-color" content="#1F1E1B" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="AniLink | Your harvest. A wider market." />
+    <meta
+      property="og:description"
+      content="A marketplace for Zamboanga City farmers and local buyers, with offers in chat, verified farmers and a price guide."
+    />
+    <meta property="og:image" content="/logos/loading-dark.png" />
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('anilink.theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
