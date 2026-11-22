@@ -52,3 +52,21 @@ Final: fixed R6+R9 demo buttons kept keyboard focus (aria-disabled instead of di
 Final: fixed R11 (verified real in a headless browser first) stat labels spilling at 320px and Tagalog nav links wrapping at 1024px — 2 'layout guards' tests RED->GREEN + browser re-measure (all labels ok; links 20px high in EN and TL), suite 143/143
 Final: browser regression after all fixes: no overflow at any size/lang/theme; all interactions pass. Preview stopped (port 4173 free).
 Final: no 'finishing-a-development-branch' step (it is a git/merge flow; the owner does version control). progress.md is kept as the record because there is no git history.
+
+## Round 2 (owner change requests, 2026-11-22)
+Ruling: read "remove all of this dash characters" as the short rule drawn before every section label (the copy had no em or en dashes; the pasted character did not arrive) - removed from Eyebrow - if the owner meant something else it is a one-line follow-up.
+Round 2: fixed email -> anilink@gmail.com (mailto link, CONTACT_EMAIL in Footer.tsx); old placeholder test now allows only that address.
+Round 2: fixed How it works step numbers removed (visual only; list stays an ordered list for screen readers).
+Ruling: produce photos are real Wikimedia Commons photos (CC0 / CC BY / CC BY-SA), cropped 600x400 and compressed (~490 KB total) into public/photos, with a footer Photo credits dialog - CC BY needs attribution - if the owner wants other photos, swap the file and its photoCredits.ts entry.
+Ruling: the two craft items had no good matching photo, so "Coconut Shell Bowl" became "Rattan Storage Boxes" and "Woven Basket" uses a photo of woven bamboo baskets - sample data, cheap to change.
+Ruling: the mango photo shows green carabao mangoes (a common eating stage), not ripe yellow ones.
+Round 2: emoji removed everywhere (produce cards, hero phone, listing, chat, alerts, price-guide chips); a test scans src for emoji.
+Round 2 done: 154/154 tests, tsc clean, build clean, headless Chrome check at 1440 and 360 (all 14 photo loads ok, no sideways scroll, no label rules, mailto correct); preview server stopped (port 4173 free).
+
+## Round 3 (owner change requests, 2026-11-22)
+Round 3: fixed QR codes no longer say "placeholder" (caption, label, store card): now "Scan to download AniLink" / Tagalog equivalent.
+Round 3: fixed FAQ answers (EN and TL) now read as a live app: payments yes, Android and iPhone from the stores, verification without "prototype"; test scans every answer for prototype/demo/preview/coming-soon wording.
+Ruling: left the rest of the copy that still says coming soon / demo (download band, store card title, order screen note, features blurb) alone - the owner asked about FAQ answers and QR wording only - they now disagree with the FAQ, flagged to the owner.
+Ruling: animations are CSS keyframes plus three small React pieces (Reveal, CountUp, ScrollProgress), no animation library; the installed motion package is still unused - lighter and easy to switch off for reduced motion - if richer physics is wanted later, swap in motion.
+Round 3: added scroll reveals with stagger, count-up stats, hero entrance and floating cards, scroll progress bar, shrinking header, nav underlines, sliding language pill, theme icon swap, button press and shine, card lifts and photo zoom, heart pop, smooth FAQ accordion, chat bubble pops, sparkline wipe, bell ring, map pin pings, QR scan line, redirect progress bar, modal springs.
+Round 3 done: 178/178 tests, tsc clean, build clean; headless Chrome: all reveals fire (0 stuck hidden at 1440 and 360), no sideways scroll, no console errors; with prefers-reduced-motion emulated: nothing hidden, 0 running animations, numbers and FAQ instant; preview server stopped.

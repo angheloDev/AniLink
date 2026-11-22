@@ -1,11 +1,13 @@
 import { Search } from 'lucide-react';
 import { useI18n } from '../../lib/i18n';
+import type { PhotoId } from '../../lib/photos';
+import { Photo } from '../Photo';
 
 const CHIPS = ['fruits', 'vegetables', 'leafy', 'rootcrops'] as const;
-const FRESH = [
-  { emoji: '🥭', name: 'Carabao Mangoes', price: '₱130/kg', tint: 'bg-tint-banana' },
-  { emoji: '🍅', name: 'Tomatoes', price: '₱82/kg', tint: 'bg-tint-tomato' },
-] as const;
+const FRESH: { photo: PhotoId; name: string; price: string; tint: string }[] = [
+  { photo: 'mango', name: 'Carabao Mangoes', price: '₱130/kg', tint: 'bg-tint-banana' },
+  { photo: 'tomato', name: 'Tomatoes', price: '₱82/kg', tint: 'bg-tint-tomato' },
+];
 
 /** A static buyer-home screen for the hero phone. */
 export function HomeScreen() {
@@ -30,8 +32,8 @@ export function HomeScreen() {
       <div className="grid grid-cols-2 gap-2">
         {FRESH.map((f) => (
           <div key={f.name} className="overflow-hidden rounded-2xl bg-card">
-            <div className={`grid h-20 place-items-center text-4xl ${f.tint}`} aria-hidden>
-              {f.emoji}
+            <div className={`h-20 ${f.tint}`}>
+              <Photo id={f.photo} eager className="size-full" />
             </div>
             <div className="p-2">
               <p className="m-0 truncate text-[11px] font-semibold">{f.name}</p>

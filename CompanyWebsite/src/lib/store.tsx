@@ -50,7 +50,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   return (
     <StoreContext.Provider value={value}>
       {children}
-      <StoreOverlay stage={state.stage} store={state.store} onClose={close} />
+      <StoreOverlay stage={state.stage} store={state.store} onClose={close} redirectMs={REDIRECT_MS} />
     </StoreContext.Provider>
   );
 }

@@ -7,6 +7,7 @@ import { useReducedMotion } from '../lib/reducedMotion';
 import { useCycle } from '../lib/useCycle';
 import { Eyebrow } from './Eyebrow';
 import { PhoneFrame } from './PhoneFrame';
+import { Reveal } from './Reveal';
 import { HomeScreen } from './screens/HomeScreen';
 import { ListingScreen } from './screens/ListingScreen';
 import { OfferChatScreen } from './screens/OfferChatScreen';
@@ -49,33 +50,35 @@ export function Hero() {
       <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 pb-20 pt-12 sm:px-8 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:pb-28 lg:pt-20">
         <div className="relative z-10">
           <Eyebrow>{t('hero.eyebrow')}</Eyebrow>
-          <p className="mb-0 mt-5 inline-flex items-center gap-2 rounded-full bg-tint-banana px-3.5 py-2 text-xs font-semibold text-sun-text">
+          <Reveal as="p" delay={100} className="mb-0 mt-5 inline-flex items-center gap-2 rounded-full bg-tint-banana px-3.5 py-2 text-xs font-semibold text-sun-text">
             <Sun size={14} aria-hidden /> {t('hero.badge')}
-          </p>
-          <h1 className="mb-0 mt-6 font-display text-[clamp(3.25rem,9vw,6rem)] leading-[0.96] tracking-tight">
+          </Reveal>
+          <Reveal as="h1" delay={180} className="mb-0 mt-6 font-display text-[clamp(3.25rem,9vw,6rem)] leading-[0.96] tracking-tight">
             <span className="block text-headline">{t('hero.headline1')}</span>
             <span className="block italic text-accent">{t('hero.headline2')}</span>
-          </h1>
-          <p className="mb-0 mt-6 max-w-xl text-lg leading-relaxed text-muted">{t('hero.subtitle')}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          </Reveal>
+          <Reveal as="p" delay={260} className="mb-0 mt-6 max-w-xl text-lg leading-relaxed text-muted">
+            {t('hero.subtitle')}
+          </Reveal>
+          <Reveal delay={340} className="mt-8 flex flex-wrap gap-3">
             <StoreButton store="google" />
             <StoreButton store="apple" />
-          </div>
-          <ul className="m-0 mt-8 flex list-none flex-wrap gap-2 p-0">
+          </Reveal>
+          <Reveal as="ul" delay={420} className="m-0 mt-8 flex list-none flex-wrap gap-2 p-0">
             {CHIPS.map((k) => (
-              <li key={k} className="rounded-full border border-border bg-card px-3.5 py-2 text-xs font-medium text-muted">
+              <li key={k} className="rounded-full border border-border bg-card px-3.5 py-2 text-xs font-medium text-muted transition duration-300 motion-safe:hover:-translate-y-0.5 hover:border-eyebrow/50 hover:text-text">
                 {t(k)}
               </li>
             ))}
-          </ul>
+          </Reveal>
         </div>
 
         <div className="relative mx-auto w-full max-w-[460px]">
           <SunDecor className="-right-4 top-2 z-0 size-28 sm:-right-10 sm:size-40" />
-          <div className="relative z-10 h-[560px] overflow-hidden rounded-b-[2.5rem] rounded-t-[999px] bg-section-green sm:h-[620px]">
+          <Reveal delay={150} className="relative z-10 h-[560px] overflow-hidden rounded-b-[2.5rem] rounded-t-[999px] bg-section-green sm:h-[620px]">
             <span aria-hidden className="absolute -left-20 top-1/3 size-72 rounded-full border border-eyebrow/15" />
             <span aria-hidden className="absolute -right-24 top-24 size-80 rounded-full border border-eyebrow/10" />
-            <div className="absolute bottom-[-80px] left-1/2 w-[min(260px,80%)] -translate-x-1/2">
+            <div className="phone-rise absolute bottom-[-80px] left-1/2 w-[min(260px,80%)] -translate-x-1/2">
               <PhoneFrame label={t('hero.phoneLabel')}>
                 {screen === 0 && (
                   <div data-testid="screen-home" className={fade}>
@@ -94,11 +97,11 @@ export function Hero() {
                 )}
               </PhoneFrame>
             </div>
-          </div>
+          </Reveal>
 
           <div
-            className="absolute left-0 top-[22%] z-20 flex items-center gap-3 rounded-2xl border border-border bg-card/90 px-4 py-3 shadow-xl backdrop-blur sm:-left-8"
-            style={{ transform: 'translateY(calc(var(--py, 0) * -0.05px))' }}
+            className="absolute left-0 top-[22%] z-20 flex items-center gap-3 rounded-2xl border border-border bg-card/90 px-4 py-3 shadow-xl backdrop-blur sm:-left-8 float-a"
+            style={{ translate: '0 calc(var(--py, 0) * -0.05px)' }}
           >
             <span aria-hidden className="grid size-10 place-items-center rounded-xl bg-primary text-primary-text">
               <Tag size={18} />
@@ -113,8 +116,8 @@ export function Hero() {
           </div>
 
           <div
-            className="absolute bottom-[16%] right-0 z-20 flex items-center gap-3 rounded-2xl border border-border bg-card/90 px-4 py-3 shadow-xl backdrop-blur sm:-right-6"
-            style={{ transform: 'translateY(calc(var(--py, 0) * 0.04px))' }}
+            className="absolute bottom-[16%] right-0 z-20 flex items-center gap-3 rounded-2xl border border-border bg-card/90 px-4 py-3 shadow-xl backdrop-blur sm:-right-6 float-b"
+            style={{ translate: '0 calc(var(--py, 0) * 0.04px)' }}
           >
             <span aria-hidden className="grid size-10 place-items-center rounded-full bg-eyebrow/20 text-eyebrow">
               <BadgeCheck size={20} />

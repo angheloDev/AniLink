@@ -6,6 +6,7 @@ import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
 import { Nav } from './components/Nav';
+import { ScrollProgress } from './components/ScrollProgress';
 import { Produce } from './components/Produce';
 import { Stats } from './components/Stats';
 import { I18nProvider, useI18n } from './lib/i18n';
@@ -29,6 +30,7 @@ export default function App() {
     <ThemeProvider>
       <I18nProvider>
         <StoreProvider>
+          <ScrollProgress />
           <SkipLink />
           <Nav />
           <main id="main">

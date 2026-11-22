@@ -2,6 +2,7 @@ import { Bell, BellRing } from 'lucide-react';
 import { useI18n } from '../../lib/i18n';
 import { useStepper } from '../../lib/stepper';
 import { useFocusResetWhenDone } from '../../lib/useFocusResetWhenDone';
+import { Photo } from '../Photo';
 
 /** Harvest alerts demo: set "mango ≤ ₱150", a farmer posts a listing, a notification pops. */
 export function AlertsScreen() {
@@ -21,18 +22,23 @@ export function AlertsScreen() {
           </p>
         ) : (
           <p className="m-0 flex items-center gap-2 text-xs font-semibold text-eyebrow">
-            <BellRing size={15} aria-hidden /> <span>{t('alerts.active')}</span>
+            <BellRing size={15} className="bell-ring" aria-hidden /> <span>{t('alerts.active')}</span>
           </p>
         )}
       </div>
 
       {step >= 2 && (
         <>
-          <div className="rounded-2xl bg-tint-banana p-3">
+          <div className="pop-in rounded-2xl bg-tint-banana p-3">
             <p className="m-0 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">{t('alerts.posted')}</p>
-            <p className="m-0 mt-1 text-sm font-semibold">🥭 {t('offer.listing')} · ₱140/kg</p>
+            <p className="m-0 mt-1 flex items-center gap-2 text-sm font-semibold">
+              <Photo id="mango" eager className="size-8 shrink-0 rounded-lg" />
+              <span>
+                {t('offer.listing')} · ₱140/kg
+              </span>
+            </p>
           </div>
-          <div role="status" className="flex items-start gap-2 rounded-2xl border border-border bg-surface p-3 shadow-lg">
+          <div role="status" className="pop-in flex items-start gap-2 rounded-2xl border border-border bg-surface p-3 shadow-lg [--d:200ms]">
             <img src="/logos/mark.png" alt="" aria-hidden width={28} height={28} className="mt-0.5 size-7 rounded-lg" />
             <div className="min-w-0 leading-tight">
               <p className="m-0 flex items-center justify-between gap-2 text-[11px] font-semibold">

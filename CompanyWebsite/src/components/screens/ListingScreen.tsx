@@ -2,6 +2,7 @@ import { BadgeCheck, Heart } from 'lucide-react';
 import { formatPeso } from '../../lib/format';
 import { useI18n } from '../../lib/i18n';
 import { PRICE_GUIDE, vsAverage } from '../../lib/priceGuide';
+import { Photo } from '../Photo';
 
 /** A static listing-detail screen for the hero phone (sample listing, price-guide badge, seller card). */
 export function ListingScreen() {
@@ -10,8 +11,8 @@ export function ListingScreen() {
   const cmp = vsAverage(mango.listed, mango.avg);
   return (
     <div className="flex h-full min-h-0 flex-col gap-2 overflow-hidden px-4 pt-1">
-      <div className="relative grid h-32 place-items-center rounded-2xl bg-tint-banana text-6xl" aria-hidden>
-        🥭
+      <div className="relative h-32 overflow-hidden rounded-2xl bg-tint-banana">
+        <Photo id={mango.photo} eager className="size-full" />
         <span className="absolute right-2 top-2 grid size-7 place-items-center rounded-full bg-black/30 text-white">
           <Heart size={14} />
         </span>

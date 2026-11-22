@@ -3,6 +3,7 @@ import { useId, useRef, useState, type ComponentType, type KeyboardEvent } from 
 import { useI18n } from '../lib/i18n';
 import { Eyebrow } from './Eyebrow';
 import { PhoneFrame } from './PhoneFrame';
+import { Reveal } from './Reveal';
 import { AlertsScreen } from './screens/AlertsScreen';
 import { MapScreen } from './screens/MapScreen';
 import { OfferChatScreen } from './screens/OfferChatScreen';
@@ -58,12 +59,16 @@ export function Features() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Eyebrow>{t('features.eyebrow')}</Eyebrow>
         <div className="mt-4 grid gap-4 lg:grid-cols-[1.4fr_1fr] lg:items-end lg:gap-16">
-          <h2 className="m-0 font-display text-4xl leading-[1.05] tracking-tight text-headline sm:text-5xl lg:text-6xl">{t('features.title')}</h2>
-          <p className="m-0 text-base leading-relaxed text-muted">{t('features.blurb')}</p>
+          <Reveal as="h2" delay={90} className="m-0 font-display text-4xl leading-[1.05] tracking-tight text-headline sm:text-5xl lg:text-6xl">
+            {t('features.title')}
+          </Reveal>
+          <Reveal as="p" delay={160} className="m-0 text-base leading-relaxed text-muted">
+            {t('features.blurb')}
+          </Reveal>
         </div>
 
         <div className="mt-12 grid grid-cols-[minmax(0,1fr)] items-center gap-10 lg:grid-cols-[minmax(0,1fr)_340px] xl:gap-24">
-          <div className="min-w-0">
+          <Reveal className="min-w-0">
             <div
               role="tablist"
               aria-label={t('features.eyebrow')}
@@ -86,11 +91,11 @@ export function Features() {
                     aria-controls={`${uid}-panel`}
                     tabIndex={selected ? 0 : -1}
                     onClick={() => select(i, false)}
-                    className={`inline-flex min-h-12 shrink-0 snap-start items-center gap-3 rounded-2xl border px-4 py-3 text-left transition lg:w-full ${
+                    className={`inline-flex min-h-12 shrink-0 snap-start items-center gap-3 rounded-2xl border px-4 py-3 text-left transition motion-safe:lg:hover:translate-x-1 lg:w-full ${
                       selected ? 'border-eyebrow/60 bg-surface' : 'border-border bg-card hover:border-eyebrow/40'
                     }`}
                   >
-                    <span aria-hidden className={`grid size-10 shrink-0 place-items-center rounded-xl ${selected ? 'bg-primary text-primary-text' : 'bg-surface text-eyebrow'}`}>
+                    <span aria-hidden className={`grid size-10 shrink-0 place-items-center rounded-xl transition duration-300 ${selected ? 'scale-110 bg-primary text-primary-text' : 'bg-surface text-eyebrow'}`}>
                       <Icon size={18} />
                     </span>
                     <span className="flex flex-col">
@@ -102,16 +107,18 @@ export function Features() {
               })}
             </div>
             <p className="mt-4 text-sm leading-relaxed text-muted lg:hidden">{t(`features.${active}.desc`)}</p>
-          </div>
+          </Reveal>
 
-          <div className="relative">
+          <Reveal delay={150} className="relative">
             <span aria-hidden className="absolute inset-x-6 top-1/2 h-72 -translate-y-1/2 rounded-full bg-section-green opacity-80 blur-3xl" />
             <div role="tabpanel" id={`${uid}-panel`} aria-labelledby={`${uid}-tab-${active}`} className="relative">
               <PhoneFrame label={t(`features.${active}.title`)}>
-                <Screen key={active} />
+                <div key={active} className="screen-in h-full">
+                  <Screen />
+                </div>
               </PhoneFrame>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

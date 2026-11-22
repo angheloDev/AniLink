@@ -25,7 +25,7 @@ Every store button (nav, hero, produce section, download band) opens one shared 
 
 These are clearly marked on the page and must be filled in before the site is public:
 
-- **Contact details** in the footer (`hello@anilink.example`, phone, address): `src/components/Footer.tsx` and `footer.*` in `src/content/`.
+- **Contact details** in the footer: the email is `anilink@gmail.com` (`CONTACT_EMAIL` in `src/components/Footer.tsx`); the phone number and address are still placeholders (`footer.*` in `src/content/`).
 - **Team cards** (names and roles) in the About section: `src/components/About.tsx`, `about.team*` keys.
 - **About mission paragraph**: `about.mission` in `src/content/en.ts` and `tl.ts`.
 - **Legal text** for the Privacy and Terms pop-ups: `legal.*` keys.
@@ -36,5 +36,7 @@ These are clearly marked on the page and must be filled in before the site is pu
 
 - Stat tiles only use facts that are true of the app (98 barangays, 7 categories, 2 languages, one chat per deal). `test/stats.test.ts` checks them against the app's own data.
 - Produce listings, prices and the farmer profile are **sample data** and are labelled as such on the page.
+- Produce pictures are real photos from Wikimedia Commons (`public/photos`, cropped to 3:2 and compressed). Their authors and licences are in `src/content/photoCredits.ts` and shown in the footer's **Photo credits** pop-up; keep that credit if you keep the photos. `test/photos.test.tsx` fails if a photo has no credit.
 - All copy lives in `src/content/en.ts` and `src/content/tl.ts`. The **Tagalog is a first draft and needs a native speaker's review.**
+- Animations live in `src/styles/motion.css` (CSS) plus `Reveal`, `CountUp` and `ScrollProgress` (small React pieces). Everything that moves is inside a `prefers-reduced-motion: no-preference` query, so visitors who ask for less motion get the finished page with nothing hidden; `test/motion.test.tsx` checks this.
 - Colors mirror `Application/mobile/src/theme/tokens.ts`; `test/scaffold.test.ts` fails if they drift.

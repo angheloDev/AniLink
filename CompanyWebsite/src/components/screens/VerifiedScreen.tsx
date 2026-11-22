@@ -44,10 +44,10 @@ export function VerifiedScreen() {
         <div className="mt-4 min-h-[88px]" aria-live="polite">
           {done ? (
             <div>
-              <p className="m-0 inline-flex items-center gap-1.5 rounded-full bg-eyebrow/15 px-3 py-1.5 text-xs font-semibold text-eyebrow">
+              <p className="pop-in m-0 inline-flex items-center gap-1.5 rounded-full bg-eyebrow/15 px-3 py-1.5 text-xs font-semibold text-eyebrow">
                 <BadgeCheck size={14} aria-hidden /> <span>{t('verified.badge')}</span>
               </p>
-              <div className="mt-3 grid grid-cols-2 gap-2 text-left">
+              <div className="pop-in mt-3 grid grid-cols-2 gap-2 text-left [--d:150ms]">
                 <div className="rounded-xl bg-surface p-2">
                   <p className="m-0 flex items-center gap-1 text-sm font-semibold">
                     <Star size={13} className="fill-sun text-sun-text" aria-hidden /> 4.8

@@ -1,7 +1,9 @@
+import type { PhotoId } from './photos';
+
 /** SAMPLE reference prices (₱ per kg) for the Price Guide demo. Illustrative, not real market data. */
 export interface CropPrice {
   crop: string;
-  emoji: string;
+  photo: PhotoId;
   low: number;
   avg: number;
   high: number;
@@ -12,11 +14,11 @@ export interface CropPrice {
 }
 
 export const PRICE_GUIDE: CropPrice[] = [
-  { crop: 'Mango', emoji: '🥭', low: 118, avg: 136, high: 158, listed: 130, weekly: [128, 130, 134, 138, 142, 140, 137, 136] },
-  { crop: 'Tomato', emoji: '🍅', low: 60, avg: 78, high: 96, listed: 82, weekly: [70, 68, 72, 75, 80, 84, 80, 78] },
-  { crop: 'Banana', emoji: '🍌', low: 52, avg: 64, high: 78, listed: 62, weekly: [60, 62, 63, 66, 67, 65, 64, 64] },
-  { crop: 'Pechay', emoji: '🥬', low: 35, avg: 48, high: 62, listed: 55, weekly: [44, 46, 50, 52, 49, 47, 48, 48] },
-  { crop: 'Kamote', emoji: '🍠', low: 38, avg: 46, high: 58, listed: 46, weekly: [44, 45, 47, 48, 46, 45, 46, 46] },
+  { crop: 'Mango', photo: 'mango', low: 118, avg: 136, high: 158, listed: 130, weekly: [128, 130, 134, 138, 142, 140, 137, 136] },
+  { crop: 'Tomato', photo: 'tomato', low: 60, avg: 78, high: 96, listed: 82, weekly: [70, 68, 72, 75, 80, 84, 80, 78] },
+  { crop: 'Banana', photo: 'banana', low: 52, avg: 64, high: 78, listed: 62, weekly: [60, 62, 63, 66, 67, 65, 64, 64] },
+  { crop: 'Pechay', photo: 'pechay', low: 35, avg: 48, high: 62, listed: 55, weekly: [44, 46, 50, 52, 49, 47, 48, 48] },
+  { crop: 'Kamote', photo: 'kamote', low: 38, avg: 46, high: 58, listed: 46, weekly: [44, 45, 47, 48, 46, 45, 46, 46] },
 ];
 
 const fmt = (n: number) => String(Math.round(n * 100) / 100);

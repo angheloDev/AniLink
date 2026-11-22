@@ -113,7 +113,8 @@ describe('Footer', () => {
     );
     expect(screen.getByText(en['footer.placeholderTag'])).toBeInTheDocument();
     const text = container.textContent ?? '';
-    for (const email of text.match(/[\w.+-]+@[\w.-]+/g) ?? []) expect(email.endsWith('@anilink.example')).toBe(true);
+    // The one email on the page is the company address the owner chose, never a personal one.
+    for (const email of text.match(/[\w.+-]+@[\w.-]+/g) ?? []) expect(email).toBe('anilink@gmail.com');
     expect(text.toLowerCase()).not.toContain('trinove');
   });
 });

@@ -3,6 +3,7 @@ import { useEffect, useReducer, useRef, useState } from 'react';
 import { useFocusResetWhenDone } from '../../lib/useFocusResetWhenDone';
 import { formatPeso } from '../../lib/format';
 import { useI18n } from '../../lib/i18n';
+import { Photo } from '../Photo';
 import {
   initialOfferDemo,
   nextAction,
@@ -21,7 +22,7 @@ function OfferCard({ event }: { event: OfferEvent }) {
   const label = event.kind === 'offer' ? t('offer.cardOffer') : event.kind === 'counter' ? t('offer.cardCounter') : t('offer.cardAccepted');
   return (
     <div
-      className={`max-w-[86%] rounded-2xl border p-3 ${mine ? 'ml-auto border-primary bg-primary text-primary-text' : 'border-border bg-surface'}`}
+      className={`pop-in max-w-[86%] rounded-2xl border p-3 ${mine ? 'ml-auto border-primary bg-primary text-primary-text' : 'border-border bg-surface'}`}
     >
       <p className={`m-0 flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${mine ? 'text-primary-text/80' : 'text-eyebrow'}`}>
         {event.kind === 'accept' && <Check size={12} aria-hidden />}
@@ -98,7 +99,7 @@ export function OfferChatScreen({ initial = initialOfferDemo, interactive = true
       </div>
 
       <div className="mx-3 mt-2 flex items-center gap-2 rounded-xl bg-tint-banana p-2">
-        <span aria-hidden className="text-xl">🥭</span>
+        <Photo id="mango" eager className="size-9 shrink-0 rounded-lg" />
         <div className="min-w-0 flex-1 leading-tight">
           <p className="m-0 truncate text-[11px] font-semibold">{t('offer.listing')}</p>
           <p className="m-0 text-[10px] text-muted">
@@ -116,7 +117,7 @@ export function OfferChatScreen({ initial = initialOfferDemo, interactive = true
           <p className="m-0 text-[10px] text-muted motion-safe:animate-pulse">{t('offer.typing')}</p>
         )}
         {state.stage === 'accepted' && (
-          <div className="on-green rounded-2xl border border-eyebrow/40 bg-section-green p-3 text-center">
+          <div className="pop-in on-green rounded-2xl border border-eyebrow/40 bg-section-green p-3 text-center">
             <p className="m-0 flex items-center justify-center gap-1 text-sm font-semibold text-headline">
               <Check size={14} aria-hidden /> <span>{t('offer.orderCreated')}</span>
             </p>

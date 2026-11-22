@@ -1,11 +1,14 @@
 import { Globe, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react';
 import { useState } from 'react';
+import { PHOTO_CREDITS } from '../content/photoCredits';
 import { useI18n } from '../lib/i18n';
 import { Logo } from './Logo';
 import { Modal } from './Modal';
 import { NAV_LINKS } from './Nav';
 
-type Legal = 'privacy' | 'terms' | null;
+type Legal = 'privacy' | 'terms' | 'credits' | null;
+
+export const CONTACT_EMAIL = 'anilink@gmail.com';
 
 export function Footer() {
   const { t } = useI18n();
@@ -31,7 +34,7 @@ export function Footer() {
           <ul className="m-0 flex list-none flex-col gap-1 p-0">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="inline-flex min-h-11 items-center text-sm text-muted transition hover:text-text">
+                <a href={l.href} className="inline-flex min-h-11 items-center text-sm text-muted transition motion-safe:hover:translate-x-1 hover:text-text">
                   {t(l.key)}
                 </a>
               </li>
@@ -44,7 +47,10 @@ export function Footer() {
           <p className="mb-3 inline-block rounded-full bg-sun/15 px-3 py-1 text-[11px] font-medium text-sun-text">{t('footer.placeholderTag')}</p>
           <ul className="m-0 flex list-none flex-col gap-2 p-0 text-sm text-muted">
             <li className="flex items-center gap-2">
-              <Mail size={15} aria-hidden /> hello@anilink.example
+              <Mail size={15} aria-hidden />{' '}
+              <a href={`mailto:${CONTACT_EMAIL}`} className="text-muted underline-offset-4 transition hover:text-text hover:underline">
+                {CONTACT_EMAIL}
+              </a>
             </li>
             <li className="flex items-center gap-2">
               <Phone size={15} aria-hidden /> +63 900 000 0000
@@ -66,6 +72,9 @@ export function Footer() {
             <button type="button" onClick={() => setLegal('terms')} className="min-h-11 px-3 hover:text-text">
               {t('footer.terms')}
             </button>
+            <button type="button" onClick={() => setLegal('credits')} className="min-h-11 px-3 hover:text-text">
+              {t('footer.credits')}
+            </button>
           </div>
         </div>
       </div>
@@ -73,9 +82,25 @@ export function Footer() {
       <Modal
         open={legal !== null}
         onClose={() => setLegal(null)}
-        title={legal === 'terms' ? t('legal.termsTitle') : t('legal.privacyTitle')}
+        title={legal === 'terms' ? t('legal.termsTitle') : legal === 'credits' ? t('credits.title') : t('legal.privacyTitle')}
       >
-        <p className="mb-6 text-sm text-muted">{legal === 'terms' ? t('legal.termsBody') : t('legal.privacyBody')}</p>
+        {legal === 'credits' ? (
+          <>
+            <p className="mb-4 text-sm text-muted">{t('credits.intro')}</p>
+            <ul tabIndex={0} className="m-0 mb-6 flex max-h-64 list-none flex-col gap-2 overflow-y-auto p-0 text-sm text-muted">
+              {Object.values(PHOTO_CREDITS).map((c) => (
+                <li key={c.title}>
+                  <a href={c.url} target="_blank" rel="noreferrer" className="text-text underline-offset-4 hover:underline">
+                    {c.title}
+                  </a>{' '}
+                  by {c.author}, {c.license}
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <p className="mb-6 text-sm text-muted">{legal === 'terms' ? t('legal.termsBody') : t('legal.privacyBody')}</p>
+        )}
         <button
           type="button"
           onClick={() => setLegal(null)}
