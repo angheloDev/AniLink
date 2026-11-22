@@ -1,0 +1,11 @@
+node_modules/
+.env
+server/uploads/*
+!server/uploads/.gitkeep
+.expo/
+mobile/android/build/
+mobile/android/app/build/
+mobile/android/.gradle/
+.superpowers/
+*.log
+dist/

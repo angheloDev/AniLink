@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "AniLink",
+    "slug": "anilink",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "anilink",
+    "userInterfaceStyle": "automatic",
+    "android": {
+      "package": "com.anilink.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#FFFFFF",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "softwareKeyboardLayoutMode": "resize",
+      "predictiveBackGestureEnabled": false
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#F6F3EC",
+          "image": "./assets/logos/loading-light.png",
+          "imageWidth": 180,
+          "dark": {
+            "backgroundColor": "#1F1E1B",
+            "image": "./assets/logos/loading-dark.png"
+          }
+        }
+      ],
+      ["expo-build-properties", { "android": { "usesCleartextTraffic": true } }],
+      ["expo-notifications", { "icon": "./assets/images/notification-icon.png", "color": "#6FBF8E" }],
+      "expo-secure-store",
+      "expo-localization",
+      ["expo-image-picker", { "photosPermission": "AniLink needs your photos so you can add pictures of your produce and profile." }]
+    ],
+    "experiments": {
+      "typedRoutes": false
+    }
+  }
+}

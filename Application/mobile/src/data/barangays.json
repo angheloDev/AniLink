@@ -1,0 +1,492 @@
+[
+  {
+    "name": "Arena Blanco",
+    "lat": 6.9198,
+    "lng": 122.1533
+  },
+  {
+    "name": "Ayala",
+    "lat": 6.9601,
+    "lng": 121.9495
+  },
+  {
+    "name": "Baliwasan",
+    "lat": 6.9159,
+    "lng": 122.06
+  },
+  {
+    "name": "Baluno",
+    "lat": 6.9819,
+    "lng": 121.9996
+  },
+  {
+    "name": "Boalan",
+    "lat": 6.9518,
+    "lng": 122.119
+  },
+  {
+    "name": "Bolong",
+    "lat": 7.098,
+    "lng": 122.2386
+  },
+  {
+    "name": "Buenavista",
+    "lat": 7.2392,
+    "lng": 122.257
+  },
+  {
+    "name": "Bunguiao",
+    "lat": 7.1042,
+    "lng": 122.1963
+  },
+  {
+    "name": "Busay (Sacol Island)",
+    "lat": 6.9843,
+    "lng": 122.2485
+  },
+  {
+    "name": "Cabaluay",
+    "lat": 6.9957,
+    "lng": 122.1775
+  },
+  {
+    "name": "Cabatangan",
+    "lat": 6.9507,
+    "lng": 122.0551
+  },
+  {
+    "name": "Cacao",
+    "lat": 7.0279,
+    "lng": 122.1475
+  },
+  {
+    "name": "Calabasa",
+    "lat": 7.2459,
+    "lng": 122.2327
+  },
+  {
+    "name": "Calarian",
+    "lat": 6.9243,
+    "lng": 122.0296
+  },
+  {
+    "name": "Camino Nuevo",
+    "lat": 6.9188,
+    "lng": 122.0753
+  },
+  {
+    "name": "Campo Islam",
+    "lat": 6.9149,
+    "lng": 122.0447
+  },
+  {
+    "name": "Canelar",
+    "lat": 6.9166,
+    "lng": 122.0696
+  },
+  {
+    "name": "Capisan",
+    "lat": 6.9729,
+    "lng": 122.0339
+  },
+  {
+    "name": "Cawit",
+    "lat": 6.9556,
+    "lng": 121.9739
+  },
+  {
+    "name": "Culianan",
+    "lat": 6.9714,
+    "lng": 122.1453
+  },
+  {
+    "name": "Curuan",
+    "lat": 7.2051,
+    "lng": 122.2284
+  },
+  {
+    "name": "Dita",
+    "lat": 7.2134,
+    "lng": 122.2429
+  },
+  {
+    "name": "Divisoria",
+    "lat": 6.9464,
+    "lng": 122.1027
+  },
+  {
+    "name": "Dulian (Upper Bunguiao)",
+    "lat": 7.1472,
+    "lng": 122.182
+  },
+  {
+    "name": "Dulian (Upper Pasonanca)",
+    "lat": 6.9809,
+    "lng": 122.0504
+  },
+  {
+    "name": "Guisao",
+    "lat": 6.9993,
+    "lng": 122.1517
+  },
+  {
+    "name": "Guiwan",
+    "lat": 6.9289,
+    "lng": 122.0923
+  },
+  {
+    "name": "Kasanyangan",
+    "lat": 6.9074,
+    "lng": 122.0905
+  },
+  {
+    "name": "La Paz",
+    "lat": 7.0228,
+    "lng": 121.9891
+  },
+  {
+    "name": "Labuan",
+    "lat": 7.0965,
+    "lng": 121.9032
+  },
+  {
+    "name": "Lamisahan",
+    "lat": 7.0624,
+    "lng": 122.1741
+  },
+  {
+    "name": "Landang Gua",
+    "lat": 6.9565,
+    "lng": 122.2575
+  },
+  {
+    "name": "Landang Laum",
+    "lat": 6.9677,
+    "lng": 122.2388
+  },
+  {
+    "name": "Lanzones",
+    "lat": 7.0071,
+    "lng": 122.1356
+  },
+  {
+    "name": "Lapakan",
+    "lat": 7.0295,
+    "lng": 122.1581
+  },
+  {
+    "name": "Latuan (Curuan)",
+    "lat": 7.1934,
+    "lng": 122.2429
+  },
+  {
+    "name": "Licomo",
+    "lat": 7.4557,
+    "lng": 122.3298
+  },
+  {
+    "name": "Limaong",
+    "lat": 7.3635,
+    "lng": 122.3531
+  },
+  {
+    "name": "Limpapa",
+    "lat": 7.1426,
+    "lng": 121.9029
+  },
+  {
+    "name": "Lubigan",
+    "lat": 7.1462,
+    "lng": 122.2334
+  },
+  {
+    "name": "Lumayang",
+    "lat": 6.989,
+    "lng": 122.0967
+  },
+  {
+    "name": "Lumbangan",
+    "lat": 6.9697,
+    "lng": 122.1015
+  },
+  {
+    "name": "Lunzuran",
+    "lat": 6.9599,
+    "lng": 122.0905
+  },
+  {
+    "name": "Maasin",
+    "lat": 6.949,
+    "lng": 121.9824
+  },
+  {
+    "name": "Malagutay",
+    "lat": 6.939,
+    "lng": 122.0163
+  },
+  {
+    "name": "Mampang",
+    "lat": 6.9158,
+    "lng": 122.1358
+  },
+  {
+    "name": "Manalipa",
+    "lat": 6.8809,
+    "lng": 122.2914
+  },
+  {
+    "name": "Mangusu",
+    "lat": 7.3527,
+    "lng": 122.2828
+  },
+  {
+    "name": "Manicahan",
+    "lat": 7.0242,
+    "lng": 122.1889
+  },
+  {
+    "name": "Mariki",
+    "lat": 6.8967,
+    "lng": 122.0913
+  },
+  {
+    "name": "Mercedes",
+    "lat": 6.9576,
+    "lng": 122.1444
+  },
+  {
+    "name": "Muti",
+    "lat": 7.2722,
+    "lng": 122.2802
+  },
+  {
+    "name": "Pamucutan",
+    "lat": 6.9971,
+    "lng": 121.9506
+  },
+  {
+    "name": "Pangapuyan",
+    "lat": 6.9177,
+    "lng": 122.1812
+  },
+  {
+    "name": "Panubigan",
+    "lat": 7.1327,
+    "lng": 122.2496
+  },
+  {
+    "name": "Pasilmanta (Sacol Island)",
+    "lat": 6.99,
+    "lng": 122.277
+  },
+  {
+    "name": "Pasobolong",
+    "lat": 6.9728,
+    "lng": 122.1292
+  },
+  {
+    "name": "Pasonanca",
+    "lat": 6.9487,
+    "lng": 122.0725
+  },
+  {
+    "name": "Patalon",
+    "lat": 7.0529,
+    "lng": 121.9098
+  },
+  {
+    "name": "Putik",
+    "lat": 6.9414,
+    "lng": 122.0958
+  },
+  {
+    "name": "Quiniput",
+    "lat": 7.1827,
+    "lng": 122.219
+  },
+  {
+    "name": "Recodo",
+    "lat": 6.9541,
+    "lng": 121.9625
+  },
+  {
+    "name": "Rio Hondo",
+    "lat": 6.8997,
+    "lng": 122.0852
+  },
+  {
+    "name": "Salaan",
+    "lat": 6.9887,
+    "lng": 122.1173
+  },
+  {
+    "name": "San Jose Cawa-Cawa",
+    "lat": 6.9103,
+    "lng": 122.0652
+  },
+  {
+    "name": "San Jose Gusu",
+    "lat": 6.9202,
+    "lng": 122.0507
+  },
+  {
+    "name": "San Roque",
+    "lat": 6.9349,
+    "lng": 122.0443
+  },
+  {
+    "name": "Sangali",
+    "lat": 7.073,
+    "lng": 122.2075
+  },
+  {
+    "name": "Santa Barbara",
+    "lat": 6.9033,
+    "lng": 122.0821
+  },
+  {
+    "name": "Santa Catalina",
+    "lat": 6.9092,
+    "lng": 122.0867
+  },
+  {
+    "name": "Santa Maria",
+    "lat": 6.9313,
+    "lng": 122.0741
+  },
+  {
+    "name": "Santo Niño",
+    "lat": 6.9091,
+    "lng": 122.0699
+  },
+  {
+    "name": "Sibulao (Caruan)",
+    "lat": 7.3259,
+    "lng": 122.2417
+  },
+  {
+    "name": "Sinubung",
+    "lat": 7.0228,
+    "lng": 121.9192
+  },
+  {
+    "name": "Sinunoc",
+    "lat": 6.9337,
+    "lng": 122.0021
+  },
+  {
+    "name": "Tagasilay",
+    "lat": 7.3017,
+    "lng": 122.2581
+  },
+  {
+    "name": "Taguiti",
+    "lat": 7.307,
+    "lng": 122.282
+  },
+  {
+    "name": "Talabaan",
+    "lat": 6.9519,
+    "lng": 122.1693
+  },
+  {
+    "name": "Talisayan",
+    "lat": 6.9885,
+    "lng": 121.9296
+  },
+  {
+    "name": "Talon-Talon",
+    "lat": 6.9104,
+    "lng": 122.1149
+  },
+  {
+    "name": "Taluksangay",
+    "lat": 6.9509,
+    "lng": 122.1822
+  },
+  {
+    "name": "Tetuan",
+    "lat": 6.918,
+    "lng": 122.0901
+  },
+  {
+    "name": "Tictapul",
+    "lat": 7.4173,
+    "lng": 122.3253
+  },
+  {
+    "name": "Tigbalabag",
+    "lat": 7.3222,
+    "lng": 122.2727
+  },
+  {
+    "name": "Tigtabon",
+    "lat": 6.8817,
+    "lng": 122.1488
+  },
+  {
+    "name": "Tolosa",
+    "lat": 7.0291,
+    "lng": 122.1227
+  },
+  {
+    "name": "Tugbungan",
+    "lat": 6.9194,
+    "lng": 122.1048
+  },
+  {
+    "name": "Tulungatung",
+    "lat": 6.9727,
+    "lng": 121.9597
+  },
+  {
+    "name": "Tumaga",
+    "lat": 6.9357,
+    "lng": 122.0788
+  },
+  {
+    "name": "Tumalutab",
+    "lat": 6.9827,
+    "lng": 122.3499
+  },
+  {
+    "name": "Tumitus",
+    "lat": 7.3898,
+    "lng": 122.3774
+  },
+  {
+    "name": "Victoria",
+    "lat": 7.0444,
+    "lng": 122.1905
+  },
+  {
+    "name": "Vitali",
+    "lat": 7.3766,
+    "lng": 122.2903
+  },
+  {
+    "name": "Zambowood",
+    "lat": 6.9416,
+    "lng": 122.1334
+  },
+  {
+    "name": "Zone I (Poblacion)",
+    "lat": 6.9062,
+    "lng": 122.0717
+  },
+  {
+    "name": "Zone II (Poblacion)",
+    "lat": 6.908,
+    "lng": 122.0744
+  },
+  {
+    "name": "Zone III (Poblacion)",
+    "lat": 6.9088,
+    "lng": 122.0791
+  },
+  {
+    "name": "Zone IV (Poblacion)",
+    "lat": 6.9042,
+    "lng": 122.0786
+  }
+]
