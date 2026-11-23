@@ -37,6 +37,16 @@ describe('App', () => {
     expect(container.textContent ?? '').not.toMatch(/\d[\d,.]*\s*(k|m|\+)?\s*(farmers|buyers|users|downloads)/i);
   });
 
+  it('shows no "placeholder" marks, in either language', () => {
+    const { container } = render(<App />);
+    expect(container.textContent ?? '').not.toMatch(/placeholder/i);
+    // Covers copy that is not on screen at first, and the Tagalog table.
+    for (const [lang, table] of [['en', en], ['tl', tl]] as const) {
+      const marked = Object.entries(table).filter(([, value]) => /placeholder/i.test(value)).map(([key]) => key);
+      expect(marked, `${lang} strings that say "placeholder"`).toEqual([]);
+    }
+  });
+
   it('switching to Tagalog changes the headline and the nav links', async () => {
     render(<App />);
     const user = userEvent.setup();
@@ -57,7 +67,7 @@ describe('page metadata and README', () => {
 
   it('README names every placeholder shown on the page and how to run the site', () => {
     const readme = read('README.md').toLowerCase();
-    for (const word of ['placeholder', 'contact', 'legal', 'qr', 'mission', 'npm run dev', 'npm test', 'tagalog']) {
+    for (const word of ['placeholder', 'contact', 'qr', 'mission', 'npm run dev', 'npm test', 'tagalog']) {
       expect(readme, word).toContain(word);
     }
   });

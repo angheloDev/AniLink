@@ -1,18 +1,12 @@
 import { Globe, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react';
-import { useState } from 'react';
-import { PHOTO_CREDITS } from '../content/photoCredits';
 import { useI18n } from '../lib/i18n';
 import { Logo } from './Logo';
-import { Modal } from './Modal';
 import { NAV_LINKS } from './Nav';
-
-type Legal = 'privacy' | 'terms' | 'credits' | null;
 
 export const CONTACT_EMAIL = 'anilink@gmail.com';
 
 export function Footer() {
   const { t } = useI18n();
-  const [legal, setLegal] = useState<Legal>(null);
 
   return (
     <footer className="on-green bg-deep-green text-text">
@@ -44,7 +38,6 @@ export function Footer() {
 
         <div>
           <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-eyebrow">{t('footer.contact')}</h2>
-          <p className="mb-3 inline-block rounded-full bg-sun/15 px-3 py-1 text-[11px] font-medium text-sun-text">{t('footer.placeholderTag')}</p>
           <ul className="m-0 flex list-none flex-col gap-2 p-0 text-sm text-muted">
             <li className="flex items-center gap-2">
               <Mail size={15} aria-hidden />{' '}
@@ -65,50 +58,8 @@ export function Footer() {
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 py-5 text-xs text-muted sm:px-8">
           <p className="m-0">{t('footer.rights', { year: new Date().getFullYear() })}</p>
-          <div className="flex gap-2">
-            <button type="button" onClick={() => setLegal('privacy')} className="min-h-11 px-3 hover:text-text">
-              {t('footer.privacy')}
-            </button>
-            <button type="button" onClick={() => setLegal('terms')} className="min-h-11 px-3 hover:text-text">
-              {t('footer.terms')}
-            </button>
-            <button type="button" onClick={() => setLegal('credits')} className="min-h-11 px-3 hover:text-text">
-              {t('footer.credits')}
-            </button>
-          </div>
         </div>
       </div>
-
-      <Modal
-        open={legal !== null}
-        onClose={() => setLegal(null)}
-        title={legal === 'terms' ? t('legal.termsTitle') : legal === 'credits' ? t('credits.title') : t('legal.privacyTitle')}
-      >
-        {legal === 'credits' ? (
-          <>
-            <p className="mb-4 text-sm text-muted">{t('credits.intro')}</p>
-            <ul tabIndex={0} className="m-0 mb-6 flex max-h-64 list-none flex-col gap-2 overflow-y-auto p-0 text-sm text-muted">
-              {Object.values(PHOTO_CREDITS).map((c) => (
-                <li key={c.title}>
-                  <a href={c.url} target="_blank" rel="noreferrer" className="text-text underline-offset-4 hover:underline">
-                    {c.title}
-                  </a>{' '}
-                  by {c.author}, {c.license}
-                </li>
-              ))}
-            </ul>
-          </>
-        ) : (
-          <p className="mb-6 text-sm text-muted">{legal === 'terms' ? t('legal.termsBody') : t('legal.privacyBody')}</p>
-        )}
-        <button
-          type="button"
-          onClick={() => setLegal(null)}
-          className="min-h-11 rounded-full bg-primary px-6 text-sm font-semibold text-primary-text"
-        >
-          {t('store.close')}
-        </button>
-      </Modal>
     </footer>
   );
 }

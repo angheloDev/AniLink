@@ -9,11 +9,7 @@ const VALUES = [
   { id: 'local', Icon: MapPinned, tile: 'bg-tint-banana text-sun-text' },
 ] as const;
 
-const Placeholder = ({ label }: { label: string }) => (
-  <span className="inline-block rounded-full bg-sun/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-sun-text">{label}</span>
-);
-
-/** About: mission and three values. The mission copy is a placeholder until the owner fills it in. The team cards were removed for now (see git history). */
+/** About: mission and three values. The mission copy is still draft text, but it is no longer marked as one. The team cards were removed for now (see git history). */
 export function About() {
   const { t } = useI18n();
   return (
@@ -27,8 +23,7 @@ export function About() {
             </Reveal>
           </div>
           <Reveal delay={120}>
-            <Placeholder label={t('about.placeholder')} />
-            <p className="mb-0 mt-3 text-base leading-relaxed text-muted">{t('about.mission')}</p>
+            <p className="m-0 text-base leading-relaxed text-muted">{t('about.mission')}</p>
           </Reveal>
         </div>
 
