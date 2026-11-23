@@ -57,7 +57,7 @@ describe('page metadata and README', () => {
 
   it('README names every placeholder shown on the page and how to run the site', () => {
     const readme = read('README.md').toLowerCase();
-    for (const word of ['placeholder', 'contact', 'team', 'legal', 'qr', 'mission', 'npm run dev', 'npm test', 'tagalog']) {
+    for (const word of ['placeholder', 'contact', 'legal', 'qr', 'mission', 'npm run dev', 'npm test', 'tagalog']) {
       expect(readme, word).toContain(word);
     }
   });

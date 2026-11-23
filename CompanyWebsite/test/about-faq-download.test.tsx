@@ -10,12 +10,17 @@ import { renderWithProviders } from './utils';
 beforeEach(() => localStorage.clear());
 
 describe('About', () => {
-  it('labels its mission copy and every team card as placeholder, with no email address', () => {
+  it('labels its mission copy as placeholder, with no email address', () => {
     const { container } = renderWithProviders(<About />);
-    expect(screen.getAllByText(en['about.placeholder']).length).toBeGreaterThanOrEqual(4);
+    expect(screen.getAllByText(en['about.placeholder'])).toHaveLength(1);
     expect(container.textContent ?? '').not.toMatch(/[\w.+-]+@[\w.-]+/);
-    expect(screen.getAllByTestId('team-card')).toHaveLength(3);
     expect(screen.getAllByTestId('value-card')).toHaveLength(3);
+  });
+
+  it('has no team section for now', () => {
+    renderWithProviders(<About />);
+    expect(screen.queryAllByTestId('team-card')).toHaveLength(0);
+    expect(screen.queryByRole('heading', { name: /team/i })).not.toBeInTheDocument();
   });
 });
 

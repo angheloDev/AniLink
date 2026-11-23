@@ -26,7 +26,6 @@ Every store button (nav, hero, produce section, download band) opens one shared 
 These are clearly marked on the page and must be filled in before the site is public:
 
 - **Contact details** in the footer: the email is `anilink@gmail.com` (`CONTACT_EMAIL` in `src/components/Footer.tsx`); the phone number and address are still placeholders (`footer.*` in `src/content/`).
-- **Team cards** (names and roles) in the About section: `src/components/About.tsx`, `about.team*` keys.
 - **About mission paragraph**: `about.mission` in `src/content/en.ts` and `tl.ts`.
 - **Legal text** for the Privacy and Terms pop-ups: `legal.*` keys.
 - **QR code target**: `PLACEHOLDER_QR_URL` in `src/components/QrCard.tsx` (currently `https://anilink.example/download`).
