@@ -23,11 +23,12 @@ Every store button (nav, hero, produce section, download band) opens one shared 
 
 ## Placeholders to replace
 
-These are clearly marked on the page and must be filled in before the site is public:
+The page no longer labels these as placeholders, so they are easy to forget. Fill them in before the site is public:
 
 - **Contact details** in the footer: the email is `anilink@gmail.com` (`CONTACT_EMAIL` in `src/components/Footer.tsx`); the phone number and address are still placeholders (`footer.*` in `src/content/`).
 - **About mission paragraph**: `about.mission` in `src/content/en.ts` and `tl.ts`.
-- **Legal text** for the Privacy and Terms pop-ups: `legal.*` keys.
+- **Photo attribution**: the CC BY and CC BY-SA photos need their credit shown on the page (data in `src/content/photoCredits.ts`), or need replacing.
+- **Privacy and Terms**: the footer links and their pop-ups were removed; add real ones before launch.
 - **QR code target**: `PLACEHOLDER_QR_URL` in `src/components/QrCard.tsx` (currently `https://anilink.example/download`).
 - **Open Graph image** path in `index.html` (relative today; use a full URL once hosted).
 
@@ -35,7 +36,7 @@ These are clearly marked on the page and must be filled in before the site is pu
 
 - Stat tiles only use facts that are true of the app (98 barangays, 7 categories, 2 languages, one chat per deal). `test/stats.test.ts` checks them against the app's own data.
 - Produce listings, prices and the farmer profile are **sample data** and are labelled as such on the page.
-- Produce pictures are real photos from Wikimedia Commons (`public/photos`, cropped to 3:2 and compressed). Their authors and licences are in `src/content/photoCredits.ts` and shown in the footer's **Photo credits** pop-up; keep that credit if you keep the photos. `test/photos.test.tsx` fails if a photo has no credit.
+- Produce pictures are real photos from Wikimedia Commons (`public/photos`, cropped to 3:2 and compressed). Their authors and licences are recorded in `src/content/photoCredits.ts`, but **the page no longer shows them** (the footer's Photo credits pop-up was removed). Several photos are CC BY or CC BY-SA, which require visible attribution, so show that credit again (or replace those photos) before the site is public. `test/photos.test.tsx` fails if a photo has no credit entry.
 - All copy lives in `src/content/en.ts` and `src/content/tl.ts`. The **Tagalog is a first draft and needs a native speaker's review.**
 - Animations live in `src/styles/motion.css` (CSS) plus `Reveal`, `CountUp` and `ScrollProgress` (small React pieces). Everything that moves is inside a `prefers-reduced-motion: no-preference` query, so visitors who ask for less motion get the finished page with nothing hidden; `test/motion.test.tsx` checks this.
 - Colors mirror `Application/mobile/src/theme/tokens.ts`; `test/scaffold.test.ts` fails if they drift.

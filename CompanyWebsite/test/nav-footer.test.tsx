@@ -87,32 +87,22 @@ describe('Nav', () => {
 });
 
 describe('Footer', () => {
-  it('Privacy opens a dialog marked as placeholder text', async () => {
+  it('has no Privacy, Terms or Photo credits links for now, so no buttons or dialogs in the footer', () => {
     renderWithProviders(<Footer />);
-    const user = userEvent.setup();
-    await user.click(screen.getByRole('button', { name: en['footer.privacy'] }));
-    const dialog = screen.getByRole('dialog', { name: en['legal.privacyTitle'] });
-    expect(dialog).toHaveTextContent('Placeholder');
-    await user.keyboard('{Escape}');
+    expect(screen.queryAllByRole('button')).toHaveLength(0);
     expect(screen.queryByRole('dialog')).toBeNull();
+    expect(screen.getByText(/All rights reserved/)).toBeInTheDocument();
   });
 
-  it('Terms opens its own dialog', async () => {
-    renderWithProviders(<Footer />);
-    const user = userEvent.setup();
-    await user.click(screen.getByRole('button', { name: en['footer.terms'] }));
-    expect(screen.getByRole('dialog', { name: en['legal.termsTitle'] })).toBeInTheDocument();
-  });
-
-  it('shows the placeholder contact block, and no real personal details', () => {
+  it('shows the contact block with no placeholder tag, and no real personal details', () => {
     const { container } = renderWithProviders(
       <>
         <Nav />
         <Footer />
       </>,
     );
-    expect(screen.getByText(en['footer.placeholderTag'])).toBeInTheDocument();
     const text = container.textContent ?? '';
+    expect(text).not.toMatch(/placeholder/i);
     // The one email on the page is the company address the owner chose, never a personal one.
     for (const email of text.match(/[\w.+-]+@[\w.-]+/g) ?? []) expect(email).toBe('anilink@gmail.com');
     expect(text.toLowerCase()).not.toContain('trinove');

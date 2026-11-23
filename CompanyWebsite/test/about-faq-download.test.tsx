@@ -10,9 +10,10 @@ import { renderWithProviders } from './utils';
 beforeEach(() => localStorage.clear());
 
 describe('About', () => {
-  it('labels its mission copy as placeholder, with no email address', () => {
+  it('shows the mission and three value cards, with no placeholder mark and no email address', () => {
     const { container } = renderWithProviders(<About />);
-    expect(screen.getAllByText(en['about.placeholder'])).toHaveLength(1);
+    expect(screen.getByText(en['about.mission'])).toBeInTheDocument();
+    expect(container.textContent ?? '').not.toMatch(/placeholder/i);
     expect(container.textContent ?? '').not.toMatch(/[\w.+-]+@[\w.-]+/);
     expect(screen.getAllByTestId('value-card')).toHaveLength(3);
   });

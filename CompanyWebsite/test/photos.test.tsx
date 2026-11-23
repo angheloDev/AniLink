@@ -1,15 +1,12 @@
 import { existsSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { screen, within } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
-import { Footer } from '../src/components/Footer';
 import { Produce } from '../src/components/Produce';
 import { HomeScreen } from '../src/components/screens/HomeScreen';
 import { ListingScreen } from '../src/components/screens/ListingScreen';
 import { PriceGuideScreen } from '../src/components/screens/PriceGuideScreen';
 import { PHOTO_CREDITS } from '../src/content/photoCredits';
-import { en } from '../src/content/en';
 import { PHOTO_IDS, photoSrc } from '../src/lib/photos';
 import { PRICE_GUIDE } from '../src/lib/priceGuide';
 import { PRODUCE } from '../src/lib/produce';
@@ -57,19 +54,5 @@ describe('real produce photos', () => {
 
   it('photoSrc points into /photos', () => {
     expect(photoSrc('mango')).toBe('/photos/mango.jpg');
-  });
-});
-
-describe('photo credits', () => {
-  it('the footer opens a credits dialog that names every photographer and licence', async () => {
-    renderWithProviders(<Footer />);
-    await userEvent.setup().click(screen.getByRole('button', { name: en['footer.credits'] }));
-    const dialog = screen.getByRole('dialog', { name: en['credits.title'] });
-    // The list scrolls inside the dialog, so keyboard users must be able to focus it to scroll it.
-    expect(within(dialog).getByRole('list')).toHaveAttribute('tabindex', '0');
-    for (const c of Object.values(PHOTO_CREDITS)) {
-      expect(dialog).toHaveTextContent(c.author);
-      expect(dialog).toHaveTextContent(c.license);
-    }
   });
 });
