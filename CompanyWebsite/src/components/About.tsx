@@ -8,13 +8,12 @@ const VALUES = [
   { id: 'trust', Icon: ShieldCheck, tile: 'bg-tint-leafy text-eyebrow' },
   { id: 'local', Icon: MapPinned, tile: 'bg-tint-banana text-sun-text' },
 ] as const;
-const TEAM = [1, 2, 3] as const;
 
 const Placeholder = ({ label }: { label: string }) => (
   <span className="inline-block rounded-full bg-sun/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-sun-text">{label}</span>
 );
 
-/** About: mission, three values and team cards. The mission copy and the team are placeholders until the owner fills them in. */
+/** About: mission and three values. The mission copy is a placeholder until the owner fills it in. The team cards were removed for now (see git history). */
 export function About() {
   const { t } = useI18n();
   return (
@@ -50,28 +49,6 @@ export function About() {
                 <p className="m-0 mt-1 text-xs leading-relaxed text-muted">{t(`about.${id}.desc`)}</p>
               </div>
               <ChevronRight size={18} className="shrink-0 text-muted transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
-            </Reveal>
-          ))}
-        </ul>
-
-        <h3 className="mb-0 mt-16 text-xs font-semibold uppercase tracking-[0.22em] text-eyebrow">{t('about.teamTitle')}</h3>
-        <ul className="m-0 mt-5 grid list-none gap-4 p-0 sm:grid-cols-3">
-          {TEAM.map((n) => (
-            <Reveal
-              as="li"
-              key={n}
-              delay={(n - 1) * 100}
-              data-testid="team-card"
-              className="group flex items-center gap-4 rounded-3xl bg-surface p-5 transition duration-300 motion-safe:hover:-translate-y-1 hover:bg-card"
-            >
-              <span aria-hidden className="grid size-14 shrink-0 place-items-center rounded-full bg-primary font-display text-xl text-primary-text transition duration-300 group-hover:scale-110">
-                {String.fromCharCode(64 + n)}
-              </span>
-              <div>
-                <p className="m-0 text-sm font-semibold">{t('about.teamName', { n })}</p>
-                <p className="mb-1.5 mt-0 text-xs text-muted">{t('about.teamRole')}</p>
-                <Placeholder label={t('about.placeholder')} />
-              </div>
             </Reveal>
           ))}
         </ul>
